@@ -4,240 +4,446 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Varshita Illa | Full Stack Developer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-/* ---------- Tokens ---------- */
-:root{
-    --bg:#fafaf9;
-    --surface:#ffffff;
-    --surface-2:#f4f4f7;
-    --text:#14141f;
-    --muted:#5b5b70;
-    --border:#e6e6ee;
-    --accent:#4f46e5;
-    --accent-hover:#4338ca;
-    --accent-soft:#eef0ff;
-    --on-accent:#ffffff;
-    --shadow-sm:0 1px 2px rgba(20,20,31,.05);
-    --shadow-md:0 12px 30px -12px rgba(49,46,129,.22);
-    --radius-sm:8px;
-    --radius:14px;
-    --radius-lg:22px;
-    --space-section:clamp(4rem,9vw,7rem);
-    --gutter:clamp(1.25rem,5vw,2rem);
-    --maxw:1120px;
-    --font:'Manrope','Segoe UI',system-ui,-apple-system,sans-serif;
-    --header-h:68px;
-    color-scheme:light;
-}
-body.dark-mode{
-    --bg:#0e0f1a;
-    --surface:#161826;
-    --surface-2:#1c1f31;
-    --text:#ececf5;
-    --muted:#a2a4bb;
-    --border:#2a2d44;
-    --accent:#8b8dff;
-    --accent-hover:#a5a7ff;
-    --accent-soft:#1f2140;
-    --on-accent:#0e0f1a;
-    --shadow-sm:none;
-    --shadow-md:0 12px 30px -12px rgba(0,0,0,.6);
-    color-scheme:dark;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
 }
 
-/* ---------- Base ---------- */
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 12px);-webkit-text-size-adjust:100%}
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-    font-family:var(--font);
-    background:var(--bg);
-    color:var(--text);
-    line-height:1.65;
-    font-size:clamp(1rem,.96rem + .2vw,1.0625rem);
-    overflow-x:hidden;
-    transition:background-color .3s,color .3s;
-}
-img{display:block;max-width:100%}
-a{color:var(--accent);text-underline-offset:3px}
-a:hover{color:var(--accent-hover)}
-:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
-
-.container,
-section,
-nav,
-footer p{max-width:var(--maxw);margin-inline:auto}
-section{padding:var(--space-section) var(--gutter)}
-
-section h2{
-    font-size:clamp(1.6rem,1.2rem + 1.6vw,2.25rem);
-    font-weight:800;
-    letter-spacing:-.02em;
-    line-height:1.15;
-    color:var(--text);
-    margin-bottom:clamp(1.75rem,4vw,2.75rem);
-    text-align:left;
+    background:#0f172a;
+    color:white;
+    line-height:1.6;
+    transition:0.4s;
 }
 
-/* ---------- Header / Nav ---------- */
+body.light-mode{
+    background:#f8fafc;
+    color:#111827;
+}
+
+body.light-mode header{
+    background:#ffffff;
+}
+
+body.light-mode .card,
+body.light-mode .project-card,
+body.light-mode .education-card{
+    background:white;
+    color:#111827;
+}
+
+
+
 header{
-    position:sticky;top:0;z-index:1000;
-    background:color-mix(in srgb,var(--bg) 88%,transparent);
-    backdrop-filter:saturate(1.4) blur(10px);
-    -webkit-backdrop-filter:saturate(1.4) blur(10px);
-    border-bottom:1px solid var(--border);
+    background:#111827;
+    position:sticky;
+    top:0;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
+
 nav{
-    display:flex;align-items:center;gap:1rem;
-    min-height:var(--header-h);
-    padding:.5rem var(--gutter);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 10%;
 }
+
 .logo{
-    font-size:1.05rem;font-weight:800;letter-spacing:-.01em;
-    color:var(--text);margin-right:auto;white-space:nowrap;
+    color:#38bdf8;
 }
-nav ul{display:flex;list-style:none;gap:.25rem}
-nav ul li{margin:0}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:25px;
+}
+
 nav ul li a{
-    display:inline-flex;align-items:center;min-height:40px;
-    padding:0 .9rem;border-radius:999px;
-    text-decoration:none;color:var(--muted);
-    font-weight:600;font-size:.94rem;
-    transition:color .2s,background-color .2s;
+    text-decoration:none;
+    color:inherit;
+    font-weight:500;
 }
-nav ul li a:hover{color:var(--text);background:var(--surface-2)}
-nav ul li a.active{color:var(--accent);background:var(--accent-soft)}
+
+nav ul li a:hover{
+    color:#38bdf8;
+}
 
 #theme-toggle{
-    width:42px;height:42px;display:grid;place-items:center;
-    background:var(--surface);color:var(--text);
-    border:1px solid var(--border);border-radius:50%;
-    font-size:1.05rem;line-height:1;cursor:pointer;
-    transition:background-color .2s,border-color .2s;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
 }
-#theme-toggle:hover{background:var(--surface-2);border-color:var(--accent)}
 
-/* ---------- Hero ---------- */
+
+
 .hero{
-    min-height:calc(100svh - var(--header-h));
-    display:flex;align-items:center;
-    padding-block:clamp(3rem,7vw,5rem);
-}
-.hero-grid{
-    width:100%;
-    display:grid;
-    grid-template-columns:minmax(0,1.35fr) minmax(0,.65fr);
-    gap:clamp(2rem,6vw,5rem);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
     align-items:center;
+    text-align:center;
+    padding:20px;
 }
-.hero-text{order:1}
+
 .profile-img{
-    order:2;
-    width:100%;max-width:340px;aspect-ratio:4/5;
-    justify-self:end;
+    width:180px;
+    height:180px;
+    border-radius:50%;
     object-fit:cover;
-    border-radius:var(--radius-lg);
-    border:1px solid var(--border);
-    box-shadow:var(--shadow-md);
-    animation:rise .8s cubic-bezier(.2,.7,.2,1) both;
+    border:4px solid #38bdf8;
+    margin-bottom:20px;
 }
+
 .hero h1{
-    font-size:clamp(2.4rem,1.4rem + 4.6vw,4.4rem);
-    font-weight:800;letter-spacing:-.035em;line-height:1.04;
-    margin-bottom:.9rem;
-    animation:rise .7s cubic-bezier(.2,.7,.2,1) both;
+    font-size:3rem;
 }
-.hero h1 span{font-weight:800}
-#typing-text{
-    min-height:1.6em;
-    font-size:clamp(1.1rem,1rem + .6vw,1.35rem);
-    font-weight:600;color:var(--accent);
-    margin-bottom:1.25rem;
+
+.hero span{
+    color:#38bdf8;
 }
+
 .hero p{
-    max-width:56ch;margin:0 0 2rem;color:var(--muted);
+    max-width:700px;
+    margin:20px auto;
 }
-@keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-/* ---------- Buttons ---------- */
-.social-links{display:flex;flex-wrap:wrap;gap:.75rem;margin:0}
-.social-links a,
 .btn{
-    display:inline-flex;align-items:center;justify-content:center;
-    min-height:48px;padding:0 1.5rem;margin:0;
-    border-radius:var(--radius-sm);
-    font:inherit;font-weight:700;font-size:.97rem;
-    text-decoration:none;cursor:pointer;
-    transition:transform .2s,background-color .2s,border-color .2s,color .2s;
+    display:inline-block;
+    background:#38bdf8;
+    color:white;
+    text-decoration:none;
+    padding:12px 25px;
+    border-radius:8px;
+    margin-top:15px;
+    transition:0.3s;
 }
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+
+
+section{
+    padding:80px 10%;
+}
+
+section h2{
+    text-align:center;
+    margin-bottom:40px;
+    color:#38bdf8;
+}
+
+
+
+.social-links{
+    margin-top:20px;
+}
+
 .social-links a{
-    background:var(--surface);color:var(--text);
-    border:1px solid var(--border);box-shadow:var(--shadow-sm);
-}
-.social-links a:first-child{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
-.social-links a:first-child:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:var(--on-accent)}
-.social-links a:not(:first-child):hover{border-color:var(--accent);color:var(--accent)}
-.btn{background:var(--accent);color:var(--on-accent);border:1px solid var(--accent);margin-top:0}
-.btn:hover{background:var(--accent-hover);border-color:var(--accent-hover);color:var(--on-accent);transform:translateY(-2px)}
-
-/* ---------- About ---------- */
-.about-text{
-    max-width:62ch;color:var(--muted);
-    font-size:clamp(1.05rem,1rem + .4vw,1.2rem);line-height:1.75;
+    display:inline-block;
+    margin:10px;
+    padding:10px 20px;
+    text-decoration:none;
+    background:#1e293b;
+    color:white;
+    border-radius:8px;
 }
 
-/* ---------- Skills ---------- */
+.social-links a:hover{
+    background:#38bdf8;
+}
+
+
+
 .skills-container{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
-    gap:.75rem;
+    grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+    gap:20px;
 }
-.card{
-    display:flex;align-items:center;justify-content:center;
-    min-height:56px;padding:.75rem 1rem;
-    background:var(--surface);color:var(--text);
-    border:1px solid var(--border);border-radius:var(--radius-sm);
-    font-weight:600;font-size:.95rem;text-align:center;
-    box-shadow:var(--shadow-sm);
-    transition:border-color .2s,background-color .2s,color .2s;
-}
-.card:hover{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);transform:none}
 
-/* ---------- Projects ---------- */
+.card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:10px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+
+
 .project-container{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));
-    gap:clamp(1rem,2.5vw,1.75rem);
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
 }
-.project-card{
-    position:relative;display:flex;flex-direction:column;
-    background:var(--surface);
-    border:1px solid var(--border);border-radius:var(--radius);
-    overflow:hidden;box-shadow:var(--shadow-sm);
-    transition:transform .25s,box-shadow .25s,border-color .25s;
-}
-.project-card:hover,
-.project-card:focus-within{transform:translateY(-4px);box-shadow:var(--shadow-md);border-color:var(--accent)}
-.project-card img{
-    width:100%;aspect-ratio:16/10;height:auto;object-fit:cover;
-    background:var(--surface-2);border-bottom:1px solid var(--border);
-}
-.project-content{padding:1.35rem 1.4rem 1.5rem}
-.project-content h3{font-size:1.15rem;font-weight:700;letter-spacing:-.01em;margin-bottom:.45rem}
-.project-content h3 a{color:var(--text);text-decoration:none}
-.project-content h3 a::after{content:"";position:absolute;inset:0}  /* whole card is clickable */
-.project-card:hover h3 a{color:var(--accent)}
-.project-content p{color:var(--muted);font-size:.96rem}
 
-/* ---------- Education ---------- */
-.education-card{
-    max-width:640px;text-align:left;
-    background:var(--surface);
-    border:1px solid var(--border);border-left:4px solid var(--accent);
-    border-radius:var(--radius);padding:1.5rem 1.75rem;
-    box-shadow:var(--shadow-sm);
+.project-card{
+    background:#1e293b;
+    border-radius:10px;
+    overflow:hidden;
+    transition:0.3s;
 }
-.education-card h3{font-size:1.2rem;font-weight:700;letter-s
+
+.project-card:hover{
+    transform:translateY(-5px);
+}
+
+.project-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+}
+
+.project-content{
+    padding:20px;
+   
+}
+
+
+
+.education-card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:10px;
+    text-align:center;
+}
+
+
+
+form{
+    max-width:600px;
+    margin:auto;
+}
+
+input,textarea{
+    width:100%;
+    padding:15px;
+    margin:10px 0;
+    border:none;
+    border-radius:8px;
+}
+
+textarea{
+    height:150px;
+}
+
+button{
+    cursor:pointer;
+}
+
+
+
+footer{
+    text-align:center;
+    padding:20px;
+    background:#111827;
+}
+
+
+
+@media(max-width:768px){
+
+    nav{
+        flex-direction:column;
+    }
+
+    nav ul{
+        margin-top:15px;
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+
+    .hero h1{
+        font-size:2rem;
+    }
+
+    .profile-img{
+        width:140px;
+        height:140px;
+    }
+}
+</style>
+
+</head>
+<body>
+
+<header>
+<nav>
+<h2 class="logo">Varshita's Portfolio</h2>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<button id="theme-toggle">🌙</button>
+</nav>
+</header>
+
+<section id="home" class="hero">
+<div>
+<img src="https://github.com/Varshitailla11/Portfolio/blob/main/Profile.jpeg?raw=true" alt="Varshita Illa" class="profile-img">
+<h1>Hello, I'm <span>Varshita Illa</span></h1>
+<h3 id="typing-text">Aspiring Full Stack Developer</h3>
+<p>
+Motivated Information Technology student passionate about
+web development, software engineering, and building
+modern user-friendly applications.
+</p>
+
+
+
+<div class="social-links">
+<a href="https://github.com/Varshitailla11/Varshitailla11" target="_blank">GitHub</a>
+<a href="https://www.linkedin.com/in/varshitailla/" target="_blank">LinkedIn</a>
+</div>
+</div>
+</section>
+
+
+<section id="about">
+<h2>About Me</h2>
+<p style="text-align:center;max-width:900px;margin:auto;">
+I am pursuing a Bachelor of Science in Information Technology
+from Vidyalankar School of Information Technology and will graduate
+in 2027. I enjoy building responsive websites, solving coding
+problems, and continuously learning modern technologies.
+</p>
+</section>
+
+
+<section id="skills">
+<h2>Skills</h2>
+<div class="skills-container">
+<div class="card">HTML5</div>
+<div class="card">CSS3</div>
+<div class="card">JavaScript</div>
+<div class="card">C++</div>    
+<div class="card">Python</div>
+<div class="card">SQL</div>
+<div class="card">MongoDB</div>
+<div class="card">React.js</div>
+<div class="card">Node.js</div>
+<div class="card">Express.js</div>
+<div class="card">REST APIs</div>
+<div class="card">Fetch API</div>
+<div class="card">Git</div>
+<div class="card">GitHub</div>
+<div class="card">VS Code</div>
+</div>
+</section>
+    
+<section id="projects">
+<h2>Projects</h2>
+
+<div class="project-container">
+<div class="project-card">
+<img src="https://github.com/Varshitailla11/Portfolio/blob/main/Mypf.jpg?raw=true" alt="Portfolio">
+<div class="project-content">
+<h3><a href="https://varshitailla11.github.io/Portfolio/">Portfolio Website</a> </h3>
+<p>Responsive portfolio website developed using HTML and CSS.</p>
+</div>
+</div>
+
+<div class="project-card">
+<img src="https://github.com/Varshitailla11/Portfolio/blob/main/Todo.jpg?raw=true" alt="ToDo">
+<div class="project-content">
+<h3><a href="https://varshitailla11.github.io/To-do-list/">To Do List App</a> </h3>
+<p>Task management application using HTML, CSS, and JavaScript.</p>
+</div>
+</div>
+
+<div class="project-card">
+<img src="https://github.com/Varshitailla11/Portfolio/blob/main/Weather.jpg?raw=true" alt="WeatherApp">
+<div class="project-content">
+<h3><a href="https://varshitailla11.github.io/Weather-App/ "> Weather Checker </a> </h3>
+<p>Implemented asynchronous programming using Fetch API and Async/Await for efficient data retrieval.</p>
+</div>
+</div>
+<div class="project-card">
+<img src="https://github.com/Varshitailla11/Portfolio/blob/main/ss.png?raw=true" alt="Notes App">
+<div class="project-content">
+<h3><a href="https://varshitailla11.github.io/Notes-App/">Take a Note</a></h3>
+<p>A simple Notes App built using HTML, CSS, and JavaScript that allows users to create, edit, save, and delete notes efficiently.</p>
+</div>
+</div>
+
+</div>
+</section>
+
+
+<section>
+<h2>Education</h2>
+<div class="education-card">
+<h3>B.Sc. Information Technology</h3>
+<p>Vidyalankar School of Information Technology</p>
+<p>Expected Graduation: 2027</p>
+</div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+<h2>Contact Me</h2>
+<form action="https://formsubmit.co/varshitailla11@gmail.com" method="POST">
+<input type="text" name="name" placeholder="Your Name" required>
+<input type="email" name="email" placeholder="Your Email" required>
+<textarea name="message" placeholder="Your Message" required></textarea>
+<button type="submit" class="btn">Send Message</button>
+</form>
+
+<br>
+
+<p>📧<a href="mailto:varshitailla11@gmail.com">varshitailla11@gmail.com</a></p>
+</section>
+
+<footer>
+<p>© 2026 Varshita Illa | All Rights Reserved</p>
+</footer>
+
+<script>
+
+/* Dark Mode */
+
+const toggle = document.getElementById("theme-toggle");
+toggle.addEventListener("click", () => {
+document.body.classList.toggle("light-mode");
+});
+
+/* Typing Animation */
+
+const text = "Aspiring Full Stack Developer";
+let index = 0;
+function typeEffect(){
+if(index < text.length){
+document.getElementById("typing-text").innerHTML += text.charAt(index);
+index++;
+setTimeout(typeEffect,100);
+}
+}
+
+document.getElementById("typing-text").innerHTML = "";
+typeEffect();
+</script>
+
+</body>
+</html>
